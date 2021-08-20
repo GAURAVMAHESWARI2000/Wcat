@@ -86,6 +86,38 @@ for(let file of filenames){
                 fileData = fileData.split(secondaryArgument).join("")
             }
         }
+        if(flag == "-s"){  //add numbering to each line in increasing order
+            let arr = fileData.split("\n")
+            for(let i=0;i<arr.length;i++){
+                arr[i] = (i+1) +" " + arr[i] 
+            }
+            fileData = arr.join("\n")
+        }
+        if(flag == "-sn"){      ////add numbering to each non-empty line in increasing order
+            let count =1;
+            let arr = fileData.split("\n")
+            for(let i=0;i<arr.length;i++){
+                if(arr[i]!=""){
+                    arr[i] = count +" " + arr[i] 
+                    count++
+                }
+                
+            }
+            fileData = arr.join("\n")
+        }
+        if(flag = "-rel"){   // remove extra empty lines when there are more than 1 empty lines keep only one empty line
+            let arr = fileData.split("\n")
+            let data = []
+            for(let i=0;i<arr.length;i++){
+                if(arr[i]=="" &&i!=0 && arr[i-1]==""){
+                    continue
+                }
+                else{
+                    data.push(arr[i])
+                }
+            }
+            fileData = data.join("\n")
+        }
     }
     console.log(fileData)
 }
